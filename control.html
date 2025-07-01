@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle do Placar</title>
+    <link rel="stylesheet" href="control.css">
+    <link rel="shortcut icon" href="LogoPantera.png" type="image/png">
+</head>
+
+<body>
+    <div class="container">
+        <div id="titulo">
+            <img id="logo" src="./LogoPantera.png" alt="Logo Panterão">
+            <div id="tituloTexto">
+                <h1>CAMPEONATO</h1>
+                <div id="subH2-CONNECT">
+                    <h2 id="subtituloH2">ARTHUR RIBEIRO</h2>
+                    <div class="status" id="status">...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⚽ Times e Placar</h2>
+            <div class="team-controls">
+                <div class="team-section">
+                    <h3>Time A</h3>
+                    <input type="text" id="timeA" placeholder="Nome do Time A" value="Time A">
+                    <input type="text" id="iconA" placeholder="URL do ícone ou emoji" style="font-size: 14px;" readonly>
+                    <button onclick="openIconModal('A')" style="margin-top: 5px;">🎨 Escolher Ícone</button>
+                    <div>
+                        <label>Gols:</label>
+                        <input type="number" id="golsA" value="0" min="0">
+                        <button onclick="changeScore('A', 1)">+1</button>
+                        <button onclick="changeScore('A', -1)">-1</button>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <label>Faltas:</label>
+                        <input type="number" id="faltasA" value="0" min="0" max="5">
+                        <button onclick="changeFaltas('A', 1)">+1</button>
+                        <button onclick="changeFaltas('A', -1)">-1</button>
+                    </div>
+                </div>
+                <div class="team-section">
+                    <h3>Time B</h3>
+                    <input type="text" id="timeB" placeholder="Nome do Time B" value="Time B">
+                    <input type="text" id="iconB" placeholder="URL do ícone ou emoji" style="font-size: 14px;" readonly>
+                    <button onclick="openIconModal('B')" style="margin-top: 5px;">🎨 Escolher Ícone</button>
+                    <div>
+                        <label>Gols:</label>
+                        <input type="number" id="golsB" value="0" min="0">
+                        <button onclick="changeScore('B', 1)">+1</button>
+                        <button onclick="changeScore('B', -1)">-1</button>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <label>Faltas:</label>
+                        <input type="number" id="faltasB" value="0" min="0" max="5">
+                        <button onclick="changeFaltas('B', 1)">+1</button>
+                        <button onclick="changeFaltas('B', -1)">-1</button>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button onclick="updateTeamNames()">Atualizar Times e Ícones</button>
+                <button onclick="resetScore()" class="danger">Zerar Placar</button>
+                <button onclick="resetFaltas()" class="warning">Zerar Faltas</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 Período</h2>
+            <div style="text-align: center;">
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px;">Período Atual:</label>
+                    <input type="number" id="periodo" value="1" min="1" max="3"
+                        style="width: 60px; text-align: center; font-size: 18px;">
+                </div>
+                <div>
+                    <button onclick="changePeriodo(1)">+1</button>
+                    <button onclick="changePeriodo(-1)">-1</button>
+                    <button onclick="updatePeriodo()">Atualizar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⏱️ Controle do Timer</h2>
+            <div class="timer-controls">
+                <div class="timer-display" id="timerDisplay">00:00</div>
+                <div style="margin-bottom: 15px;">
+                    <label>
+                        <input type="radio" name="timerMode" value="normal" checked onchange="changeTimerMode()">
+                        ⏱️ Normal (conta para cima)
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="timerMode" value="countdown" onchange="changeTimerMode()">
+                        ⏰ Countdown (conta para baixo)
+                    </label>
+                </div>
+                <div>
+                    <button onclick="startTimer()">▶️ Iniciar</button>
+                    <button onclick="stopTimer()" class="warning">⏸️ Parar</button>
+                    <button onclick="resetTimer()" class="danger">🔄 Resetar</button>
+                </div>
+                <div style="margin-top: 15px;">
+                    <input type="number" id="customMinutes" placeholder="Min" min="0" max="59" value="0">
+                    <input type="number" id="customSeconds" placeholder="Seg" min="0" max="59" value="0">
+                    <button onclick="setCustomTime()">Definir Tempo</button>
+                </div>
+                <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                    <p>💡 <strong>Dica:</strong> No modo countdown, defina um tempo antes de iniciar. O timer para
+                        automaticamente quando chega a zero.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para seleção de ícones -->
+        <div id="iconModal"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            <div
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
+                <h3>🎨 Escolher Ícone para <span id="modalTeamName">Time</span></h3>
+
+                <h4>📁 Ícones Personalizados</h4>
+                <div id="iconGallery" class="icon-gallery">
+                    <div style="grid-column: 1/-1; text-align: center; color: #666;">
+                        Carregando ícones...
+                    </div>
+                </div>
+
+                <h4>😀 Emojis Rápidos</h4>
+                <div class="emoji-buttons">
+                    <div class="emoji-btn" onclick="selectIcon('⚽')">⚽</div>
+                    <div class="emoji-btn" onclick="selectIcon('🏆')">🏆</div>
+                    <div class="emoji-btn" onclick="selectIcon('🔥')">🔥</div>
+                    <div class="emoji-btn" onclick="selectIcon('⭐')">⭐</div>
+                    <div class="emoji-btn" onclick="selectIcon('🟦')">🟦</div>
+                    <div class="emoji-btn" onclick="selectIcon('🟥')">🟥</div>
+                    <div class="emoji-btn" onclick="selectIcon('🟨')">🟨</div>
+                    <div class="emoji-btn" onclick="selectIcon('🟩')">🟩</div>
+                    <div class="emoji-btn" onclick="selectIcon('🟪')">🟪</div>
+                    <div class="emoji-btn" onclick="selectIcon('🟫')">🟫</div>
+                    <div class="emoji-btn" onclick="selectIcon('⚪')">⚪</div>
+                    <div class="emoji-btn" onclick="selectIcon('⚫')">⚫</div>
+                    <div class="emoji-btn" onclick="selectIcon('🔵')">🔵</div>
+                    <div class="emoji-btn" onclick="selectIcon('🔴')">🔴</div>
+                    <div class="emoji-btn" onclick="selectIcon('🟡')">🟡</div>
+                    <div class="emoji-btn" onclick="selectIcon('🟢')">🟢</div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button onclick="selectIcon('')" class="danger" style="margin-right: 10px;">🗑️ Remover
+                        Ícone</button>
+                    <button onclick="closeIconModal()">❌ Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔗 Links Úteis</h2>
+            <p><strong>URL do Placar para OBS:</strong> <a href="http://localhost:3000"
+                    target="_blank">http://localhost:3000</a></p>
+            <p><strong>Controle:</strong> <a href="http://localhost:3000/control"
+                    target="_blank">http://localhost:3000/control</a></p>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="control.js"></script>
+</body>
+
+</html>

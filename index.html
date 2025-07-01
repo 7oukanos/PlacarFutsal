@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Placar Futsal</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="placar">
+    <div id="timer">00:00</div>
+    <div class="times">
+      <div class="time">
+        <div class="team-icon" id="iconA">⚽</div>
+        <div class="team-name-falta">
+            <div class="team-name" id="timeA">Time A</div>
+            <div class="faltas-container">
+              <div class="falta-indicator" id="falta-A-1"></div>
+              <div class="falta-indicator" id="falta-A-2"></div>
+              <div class="falta-indicator" id="falta-A-3"></div>
+              <div class="falta-indicator" id="falta-A-4"></div>
+              <div class="falta-indicator" id="falta-A-5"></div>
+            </div>
+        </div>
+      </div>
+      <div class="gols" id="golsA">0</div>
+      <img src="./LogoPantera.png" alt="Logo Panterão">
+      <div class="gols" id="golsB">0</div>
+      <div class="time">
+        <div class="team-name-falta">
+            <div class="team-name" id="timeB">Time B</div>
+            <div class="faltas-container">
+              <div class="falta-indicator" id="falta-B-1"></div>
+              <div class="falta-indicator" id="falta-B-2"></div>
+              <div class="falta-indicator" id="falta-B-3"></div>
+              <div class="falta-indicator" id="falta-B-4"></div>
+              <div class="falta-indicator" id="falta-B-5"></div>
+            </div>
+        </div>
+        <div class="team-icon" id="iconB">⚽</div>
+      </div>
+    </div>
+    <div id="periodo">1P</div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="placar.js"></script>
+</body>
+</html>

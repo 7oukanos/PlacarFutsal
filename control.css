@@ -1,0 +1,218 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #141414 0%, #000040 100%);
+    margin: 0;
+    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 92vw;
+    max-height: 85vh;
+    background: rgb(20, 20, 20);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: scroll;
+
+}
+
+#titulo {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+#logo {
+    width: 100px;
+    height: 100px;
+}
+
+h1 {
+    color: #ffffff;
+    font-weight: bolder;
+    margin-bottom: -25px;
+}
+
+#subH2-CONNECT {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+#subtituloH2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 23px;
+}
+
+.section {
+    color: white;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #3c3c3c55;
+    border-radius: 10px;
+    background: rgb(20, 20, 20);
+}
+
+.section h2 {
+    margin-top: 0;
+    color: #ffffff;
+}
+
+.team-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.team-section {
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="number"] {
+    width: 80px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+}
+
+button {
+    background: #4CAF50;
+    color: #212121;
+    font-weight: bolder;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+button.danger {
+    background: #f44336;
+}
+
+button.danger:hover {
+    background: #da190b;
+}
+
+button.warning {
+    background: #ff9800;
+}
+
+button.warning:hover {
+    background: #f57c00;
+}
+
+.timer-controls {
+    text-align: center;
+}
+
+.timer-display {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 20px 0; 
+    color: #ffffff;
+}
+
+.status {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.icon-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background: white;
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.icon-item:hover {
+    background: #f0f0f0;
+    border-color: #007bff;
+}
+
+.icon-item.selected {
+    background: #e7f3ff;
+    border-color: #007bff;
+}
+
+.icon-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.icon-item .icon-name {
+    font-size: 10px;
+    text-align: center;
+    word-break: break-word;
+    max-width: 60px;
+}
+
+.emoji-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.emoji-btn {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.emoji-btn:hover {
+    background: #e9ecef;
+    border-color: #007bff;
+}

@@ -76,20 +76,26 @@ h1 {
 }
 
 input[type="text"] {
-    width: 100%;
+    width: 20%;
+    height: 30px;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    color: white;
+    background: rgb(20, 20, 20);
+    border: 2px solid #3c3c3c55;
+    border-radius: 10px;
     font-size: 16px;
 }
 
 input[type="number"] {
-    width: 80px;
+    -moz-appearance: textfield;
+    width: 20px;
     padding: 10px;
     margin: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    color: white;
+    background: rgb(20, 20, 20);
+    border: 2px solid #3c3c3c55;
+    border-radius: 10px;
     font-size: 18px;
     text-align: center;
 }
@@ -134,7 +140,7 @@ button.warning:hover {
 .timer-display {
     font-size: 2rem;
     font-weight: bold;
-    margin: 20px 0; 
+    margin: 20px 0;
     color: #ffffff;
 }
 

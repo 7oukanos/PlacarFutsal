@@ -5,8 +5,238 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle do Placar</title>
-    <link rel="stylesheet" href="control.css">
-    <link rel="shortcut icon" href="LogoPantera.png" type="image/png">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #141414 0%, #000040 100%);
+            margin: 0;
+            min-height: 100vh;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 92vw;
+            max-height: 85vh;
+            background: rgb(20, 20, 20);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: scroll;
+
+        }
+
+        #titulo {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;
+        }
+
+        #logo {
+            width: 100px;
+            height: 100px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-weight: bolder;
+            margin-bottom: -25px;
+        }
+
+        #subH2-CONNECT {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+        }
+
+        #subtituloH2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 23px;
+        }
+
+        .section {
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #3c3c3c55;
+            border-radius: 10px;
+            background: rgb(20, 20, 20);
+        }
+
+        .section h2 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .team-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .team-section {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 20%;
+            height: 30px;
+            padding: 10px;
+            margin: 10px 0;
+            color: white;
+            background: rgb(20, 20, 20);
+            border: 2px solid #3c3c3c55;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+            width: 20px;
+            padding: 10px;
+            margin: 5px;
+            color: white;
+            background: rgb(20, 20, 20);
+            border: 2px solid #3c3c3c55;
+            border-radius: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        button {
+            background: #4CAF50;
+            color: #212121;
+            font-weight: bolder;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        button.danger {
+            background: #f44336;
+        }
+
+        button.danger:hover {
+            background: #da190b;
+        }
+
+        button.warning {
+            background: #ff9800;
+        }
+
+        button.warning:hover {
+            background: #f57c00;
+        }
+
+        .timer-controls {
+            text-align: center;
+        }
+
+        .timer-display {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #ffffff;
+        }
+
+        .status {
+            text-align: center;
+            font-size: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .icon-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            color: white;
+            background: rgb(20, 20, 20);
+            border: 2px solid #3c3c3c55;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            background: rgb(20, 20, 20);
+            border: 2px solid #3c3c3c55;
+        }
+
+        .icon-item:hover {
+            background: #f0f0f0;
+            border-color: #007bff;
+            color: #212121;
+        }
+
+        .icon-item.selected {
+            background: #e7f3ff;
+            border-color: #007bff;
+            color: #212121;
+        }
+
+        .icon-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+        .icon-item .icon-name {
+            font-size: 10px;
+            text-align: center;
+            word-break: break-word;
+            max-width: 60px;
+        }
+
+        .emoji-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .emoji-btn {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .emoji-btn:hover {
+            background: #e9ecef;
+            border-color: #007bff;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +257,7 @@
             <div class="team-controls">
                 <div class="team-section">
                     <h3>Time A</h3>
-                    <input type="text" id="timeA" placeholder="Nome do Time A" value="Time A">
+                    <input type="text" id="timeA" placeholder="Nome do Time A" value="Time A" maxlength="3">
                     <input type="text" id="iconA" placeholder="URL do ícone ou emoji" style="font-size: 14px;" readonly>
                     <button onclick="openIconModal('A')" style="margin-top: 5px;">🎨 Escolher Ícone</button>
                     <div>
@@ -45,7 +275,7 @@
                 </div>
                 <div class="team-section">
                     <h3>Time B</h3>
-                    <input type="text" id="timeB" placeholder="Nome do Time B" value="Time B">
+                    <input type="text" id="timeB" placeholder="Nome do Time B" value="Time B" maxlength="3">
                     <input type="text" id="iconB" placeholder="URL do ícone ou emoji" style="font-size: 14px;" readonly>
                     <button onclick="openIconModal('B')" style="margin-top: 5px;">🎨 Escolher Ícone</button>
                     <div>
@@ -119,9 +349,9 @@
 
         <!-- Modal para seleção de ícones -->
         <div id="iconModal"
-            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000;">
             <div
-                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; color: white; background: rgb(20, 20, 20);border: 2px solid #3c3c3c55;">
                 <h3>🎨 Escolher Ícone para <span id="modalTeamName">Time</span></h3>
 
                 <h4>📁 Ícones Personalizados</h4>
@@ -169,7 +399,205 @@
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="control.js"></script>
+    <script>
+        const socket = io();
+        let currentTeam = '';
+        let availableIcons = [];
+
+        // Carregar ícones disponíveis
+        async function loadAvailableIcons() {
+            try {
+                const response = await fetch('/api/icons');
+                availableIcons = await response.json();
+            } catch (error) {
+                console.error('Erro ao carregar ícones:', error);
+                availableIcons = [];
+            }
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', loadAvailableIcons);
+
+        // Status da conexão
+        socket.on('connect', () => {
+            document.getElementById('status').textContent = '✅';
+            document.getElementById('status').className = 'status connected';
+            socket.emit('getPlacarData');
+        });
+
+        socket.on('disconnect', () => {
+            document.getElementById('status').textContent = '❌';
+            document.getElementById('status').className = 'status disconnected';
+        });
+
+        // Receber atualizações do placar
+        socket.on('placarUpdate', (data) => {
+            document.getElementById('timeA').value = data.timeA;
+            document.getElementById('timeB').value = data.timeB;
+            document.getElementById('golsA').value = data.golsA;
+            document.getElementById('golsB').value = data.golsB;
+            document.getElementById('iconA').value = data.iconA || '';
+            document.getElementById('iconB').value = data.iconB || '';
+            document.getElementById('faltasA').value = data.faltasA || 0;
+            document.getElementById('faltasB').value = data.faltasB || 0;
+            document.getElementById('periodo').value = data.periodo || 1;
+        });
+
+        // Receber atualizações do timer
+        socket.on('timerUpdate', (data) => {
+            const minutes = Math.floor(data.seconds / 60).toString().padStart(2, '0');
+            const seconds = (data.seconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${minutes}:${seconds}`;
+
+            // Atualizar modo do timer na interface
+            const isCountdown = data.isCountdown;
+            document.querySelector(`input[name="timerMode"][value="${isCountdown ? 'countdown' : 'normal'}"]`).checked = true;
+        });
+
+        socket.on('timerFinished', () => {
+            alert('⏰ Tempo esgotado!');
+        });
+
+        // Funções de controle
+        function changeScore(team, change) {
+            const input = document.getElementById(`gols${team}`);
+            const newValue = Math.max(0, parseInt(input.value) + change);
+            input.value = newValue;
+            updateScore();
+        }
+
+        function updateScore() {
+            const data = {
+                timeA: document.getElementById('timeA').value,
+                timeB: document.getElementById('timeB').value,
+                golsA: parseInt(document.getElementById('golsA').value),
+                golsB: parseInt(document.getElementById('golsB').value),
+                iconA: document.getElementById('iconA').value,
+                iconB: document.getElementById('iconB').value,
+                faltasA: parseInt(document.getElementById('faltasA').value) || 0,
+                faltasB: parseInt(document.getElementById('faltasB').value) || 0,
+                periodo: parseInt(document.getElementById('periodo').value) || 1
+            };
+            socket.emit('updatePlacar', data);
+        }
+
+        function updateTeamNames() {
+            updateScore();
+        }
+
+        function changeTimerMode() {
+            const isCountdown = document.querySelector('input[name="timerMode"]:checked').value === 'countdown';
+            socket.emit('setTimerMode', isCountdown);
+        }
+
+        function changeFaltas(team, change) {
+            const input = document.getElementById(`faltas${team}`);
+            const newValue = Math.max(0, Math.min(5, parseInt(input.value) + change));
+            input.value = newValue;
+            updateScore();
+        }
+
+        function resetFaltas() {
+            if (confirm('Tem certeza que deseja zerar as faltas?')) {
+                document.getElementById('faltasA').value = 0;
+                document.getElementById('faltasB').value = 0;
+                updateScore();
+            }
+        }
+
+        function changePeriodo(change) {
+            const input = document.getElementById('periodo');
+            const newValue = Math.max(1, Math.min(3, parseInt(input.value) + change));
+            input.value = newValue;
+            updateScore();
+        }
+
+        function updatePeriodo() {
+            updateScore();
+        }
+
+        // Funções do modal de ícones
+        function openIconModal(team) {
+            currentTeam = team;
+            document.getElementById('modalTeamName').textContent = `Time ${team}`;
+            document.getElementById('iconModal').style.display = 'block';
+            loadIconGallery();
+        }
+
+        function closeIconModal() {
+            document.getElementById('iconModal').style.display = 'none';
+            currentTeam = '';
+        }
+
+        function loadIconGallery() {
+            const gallery = document.getElementById('iconGallery');
+
+            if (availableIcons.length === 0) {
+                gallery.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #666;">Nenhum ícone encontrado na pasta icone_times</div>';
+                return;
+            }
+
+            gallery.innerHTML = availableIcons.map(icon => `
+                <div class="icon-item" onclick="selectIcon('${icon.url}')">
+                    <img src="${icon.url}" alt="${icon.displayName}" onerror="this.style.display='none'">
+                    <div class="icon-name">${icon.displayName}</div>
+                </div>
+            `).join('');
+        }
+
+        function selectIcon(iconUrl) {
+            if (currentTeam) {
+                document.getElementById(`icon${currentTeam}`).value = iconUrl;
+                updateScore();
+                closeIconModal();
+            }
+        }
+
+        // Fechar modal clicando fora
+        document.getElementById('iconModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeIconModal();
+            }
+        });
+
+        function resetScore() {
+            if (confirm('Tem certeza que deseja zerar o placar?')) {
+                document.getElementById('golsA').value = 0;
+                document.getElementById('golsB').value = 0;
+                updateScore();
+            }
+        }
+
+        function startTimer() {
+            socket.emit('startTimer');
+        }
+
+        function stopTimer() {
+            socket.emit('stopTimer');
+        }
+
+        function resetTimer() {
+            if (confirm('Tem certeza que deseja resetar o timer?')) {
+                socket.emit('resetTimer');
+            }
+        }
+
+        function setCustomTime() {
+            const minutes = parseInt(document.getElementById('customMinutes').value) || 0;
+            const seconds = parseInt(document.getElementById('customSeconds').value) || 0;
+            const totalSeconds = (minutes * 60) + seconds;
+            socket.emit('setTimer', totalSeconds);
+        }
+
+        // Auto-update quando mudar os valores
+        document.getElementById('golsA').addEventListener('change', updateScore);
+        document.getElementById('golsB').addEventListener('change', updateScore);
+        document.getElementById('iconA').addEventListener('change', updateScore);
+        document.getElementById('iconB').addEventListener('change', updateScore);
+        document.getElementById('faltasA').addEventListener('change', updateScore);
+        document.getElementById('faltasB').addEventListener('change', updateScore);
+        document.getElementById('periodo').addEventListener('change', updateScore);
+    </script>
 </body>
 
 </html>

@@ -1,17 +1,14 @@
 const socket = io();
 let currentTeam = '';
-let availableIcons = [];
-
-// Carregar ícones disponíveis
 async function loadAvailableIcons() {
-    try {
-        const response = await fetch('/api/icons');
-        availableIcons = await response.json();
-    } catch (error) {
-        console.error('Erro ao carregar ícones:', error);
-        availableIcons = [];
-    }
-}
+            try {
+                const response = await fetch('/api/icons');
+                availableIcons = await response.json();
+            } catch (error) {
+                console.error('Erro ao carregar ícones:', error);
+                availableIcons = [];
+            }
+        }
 
 // Inicializar quando a página carregar
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,8 +35,8 @@ socket.on('disconnect', () => {
 
 // Receber atualizações do placar
 socket.on('placarUpdate', (data) => {
-    document.getElementById('timeA').value = data.timeA;
-    document.getElementById('timeB').value = data.timeB;
+    document.getElementById('timeA').value = data.timeA.toUpperCase();
+    document.getElementById('timeB').value = data.timeB.toUpperCase();
     document.getElementById('golsA').value = data.golsA;
     document.getElementById('golsB').value = data.golsB;
     document.getElementById('iconA').value = data.iconA || '';

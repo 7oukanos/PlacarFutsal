@@ -2,7 +2,7 @@
 
 Sistema completo de placar para transmissões de futsal, com controle remoto via interface web.
 
-By. Ítalo Aurélio
+*By. **Ítalo Aurélio***
 
 ## 🚀 Como usar
 
@@ -27,7 +27,8 @@ npm start
 2. URL: `http://localhost:3000`
 3. Largura: 650px
 4. Altura: 80px
-5. Marque **"Shutdown source when not visible"** e **"Refresh browser when scene becomes active"**
+5. CSS personalizado: `background: transparent;` **SUPER IMPORTANTE**
+6. Marque **"Shutdown source when not visible"** e **"Refresh browser when scene becomes active"**
 
 ## 🎮 Funcionalidades
 
@@ -54,11 +55,15 @@ npm start
 
 ```
 ├── index.html      # Interface do placar (para OBS)
+├── control.css     # Estilo do controle
+├── control.js      # JavaScript do controle
 ├── control.html    # Interface de controle
+├── LogoPantera     # Logo do placar e do controle
 ├── styles.css      # Estilos do placar
 ├── placar.js       # JavaScript do placar
 ├── server.js       # Servidor Node.js
 ├── package.json    # Dependências
+├── fonte           # Fonte do placar
 └── icone_times/    # Pasta com ícones dos times (imagens)
 ```
 
